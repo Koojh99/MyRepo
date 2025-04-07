@@ -1,6 +1,5 @@
--- CREATE DATABASE hr_join;
--- USE  hr_join;
-
+CREATE DATABASE hr_join;
+USE  hr_join;
 -- set foreign_key_checks=0;
 
 -- ------------------------------------------------------
@@ -93,8 +92,8 @@ CREATE TABLE emp(
     salary 	  DECIMAL(7,2) NOT NULL,
     comm_pct  DECIMAL(2,2),
     dept_id   INT,
-    CONSTRAINT fk_emp_dept FOREIGN KEY(dept_id) REFERENCES dept(dept_id) ON DELETE SET NULL,
-    CONSTRAINT fk_emp_job FOREIGN KEY(job_id) REFERENCES job(job_id) ON DELETE SET NULL,
+    CONSTRAINT fk_emp_dept FOREIGN KEY(dept_id) REFERENCES dept(dept_id) ON DELETE SET NULL, -- ON DELETE SET NULL : 내가 참조하고 있는 부모의 table에서 값이 지워지면 NULL 대입(NULL이 허용하는 컬럼이어야함) 
+    CONSTRAINT fk_emp_job FOREIGN KEY(job_id) REFERENCES job(job_id) ON DELETE SET NULL,  -- ON DELETE CASCADE : 부모 table 지워지면 자식 table , 참조하고 있는 값들 다 지워짐.
     CONSTRAINT fk_emp_mgr FOREIGN KEY(mgr_id) REFERENCES emp(emp_id) ON DELETE SET NULL
 );
 
